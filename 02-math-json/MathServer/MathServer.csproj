@@ -9,7 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="DotBPE.Rpc.Hosting" Version="1.1.10" />
+      <PackageReference Include="DotBPE.Rpc.Hosting" Version="1.1.12" />
       <PackageReference Include="Jil" Version="2.15.4" />
     </ItemGroup>
 </Project>

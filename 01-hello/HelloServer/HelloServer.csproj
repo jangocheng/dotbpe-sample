@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotBPE.Protocol.Amp" Version="1.1.10" />
-    <PackageReference Include="DotBPE.Rpc.Hosting" Version="1.1.10" />
+    <PackageReference Include="DotBPE.Protocol.Amp" Version="1.1.12" />
+    <PackageReference Include="DotBPE.Rpc.Hosting" Version="1.1.12" />
   </ItemGroup>
 
 </Project>

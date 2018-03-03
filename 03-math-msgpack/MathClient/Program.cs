@@ -1,4 +1,8 @@
 using DotBPE.Protocol.Amp;
+using DotBPE.Rpc.Client;
+using DotBPE.Rpc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Text;
 using MathCommon;
@@ -12,7 +16,9 @@ namespace MathClient
         {
             //DotBPE.Rpc.Environment.SetLogger(new DotBPE.Rpc.Logging.ConsoleLogger());
 
-            using (var caller = new AmpCallInvoker("127.0.0.1:6201"))
+            new ClientProxyBuilder().UseServer("127.0.0.1:6201").ConfigureServices(services=>services.AddLogging()).BuildDefault();
+
+            using (var caller = DotBPE.Rpc.Environment.ServiceProvider.GetService<ICallInvoker<AmpMessage>>())
             {
                 Console.WriteLine("ready to send message");
                 ushort serviceId = 10002; // 10001 = MathService ,1 = ADd

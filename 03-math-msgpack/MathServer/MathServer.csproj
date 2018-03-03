@@ -10,7 +10,7 @@
 
     <ItemGroup>
       <PackageReference Include="MessagePack" Version="1.7.2" />
-	  <PackageReference Include="DotBPE.Rpc.Hosting" Version="1.1.10" />
-	  
+	  <PackageReference Include="DotBPE.Rpc.Hosting" Version="1.1.12" />
+
     </ItemGroup>
 </Project>

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using DotBPE.Hosting;
 using DotBPE.Protocol.Amp;
 using DotBPE.Rpc;
-using DotBPE.Rpc.Extensions;
 using DotBPE.Rpc.Hosting;
 using Microsoft.Extensions.Logging;
 using Jil;
@@ -30,7 +29,7 @@ namespace MathServer
                 {
                     //添加协议支持
                     services.AddDotBPE();
-                                       
+
                     //注册服务
                     services.AddServiceActors<AmpMessage>((actors) =>
                     {
@@ -50,7 +49,7 @@ namespace MathServer
 
     public class MathService : ServiceActor
     {
-        
+
 
         /// <summary>
         /// 服务的标识,这里的服务号是10001
@@ -95,5 +94,5 @@ namespace MathServer
             return Task.FromResult(rsp);
         }
     }
-    
+
 }

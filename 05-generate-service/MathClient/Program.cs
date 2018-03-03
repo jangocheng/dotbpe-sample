@@ -1,4 +1,8 @@
 using DotBPE.Protocol.Amp;
+using DotBPE.Rpc.Client;
+using DotBPE.Rpc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Text;
 using MathCommon;
@@ -16,7 +20,8 @@ namespace MathClient
 
         public async static Task RunClient()
         {
-            using (var client = new MathCommon.MathClient("127.0.0.1:6201"))
+            var proxy = new ClientProxyBuilder().UseServer("127.0.0.1:6201").ConfigureServices(services=>services.AddLogging()).BuildDefault();
+            using (var client = proxy.GetClient<MathCommon.MathClient>())
             {
                 Console.WriteLine("ready to send message");
 

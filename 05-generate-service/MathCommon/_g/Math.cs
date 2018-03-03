@@ -25,8 +25,8 @@ namespace MathCommon {
             "CgptYXRoLnByb3RvEgZkb3RicGUaE2RvdGJwZV9vcHRpb24ucHJvdG8iHgoG",
             "QWRkUmVxEgkKAWEYASABKAUSCQoBYhgCIAEoBSITCgZBZGRSZXMSCQoBYxgB",
             "IAEoBTI6CgRNYXRoEisKA0FkZBIOLmRvdGJwZS5BZGRSZXEaDi5kb3RicGUu",
-            "QWRkUmVzIgTQ8xgBGgXI8xiVTkITSAGqAgpNYXRoQ29tbW9u8PMYAVAAYgZw",
-            "cm90bzM="));
+            "QWRkUmVzIgTQ8xgBGgXI8xiVTkIPSAGqAgpNYXRoQ29tbW9uUABiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::DotBPE.Protobuf.DotbpeOptionReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {

@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DotBPE.Protocol.Amp;
 using DotBPE.Rpc;
-using DotBPE.Rpc.Extensions;
 using DotBPE.Rpc.Hosting;
 using MathCommon;
 using Microsoft.Extensions.DependencyInjection;

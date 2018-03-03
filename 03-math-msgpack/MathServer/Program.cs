@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DotBPE.Protocol.Amp;
 using DotBPE.Rpc;
-using DotBPE.Rpc.Extensions;
 using DotBPE.Rpc.Hosting;
 using Microsoft.Extensions.Logging;
 using MessagePack;
@@ -18,7 +17,7 @@ namespace MathServer
     {
         static void Main(string[] args)
         {
-            
+
             string ip = "127.0.0.1";
             int port = 6201;
 
@@ -48,7 +47,7 @@ namespace MathServer
 
     public class MathService : ServiceActor
     {
-      
+
         /// <summary>
         /// 服务的标识,这里的服务号是10001
         /// </summary>
@@ -91,5 +90,5 @@ namespace MathServer
             return Task.FromResult(rsp);
         }
     }
-    
+
 }
