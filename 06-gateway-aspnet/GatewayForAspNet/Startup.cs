@@ -24,19 +24,17 @@ namespace GatewayForAspNet
             //添加路由信息
             services.AddRoutes();
 
-            // 自动转发服务
-            services.AddScoped<IForwardService, ForwardService>();
+            //添加默认AspNetGateWay相关依赖
+            services.AddSingleton<IMessageParser<AmpMessage>, MessageParser>();
+            services.AddSingleton<IGateService, DefaultGateService<AmpMessage>>();
 
             //添加服务端支持
-            services.AddDotBPE();
+            services.AddDotBPE().AddAmpClient();
 
             services.AddServiceActors<AmpMessage>((actors) =>
             {
                 actors.Add<GreeterService>();
             });
-
-            //添加本地代理模式客户端
-            services.AddAgentClient<AmpMessage>();
 
             //添加RPC服务
             services.AddSingleton<IHostedService, VirtualRpcHostService>();

@@ -24,7 +24,7 @@ namespace GatewayForAspNet
                     opt.Items = new List<HttpRouterOptionItem>();
                 }
 
-                foreach (var item in HttpApiOptions.GetList())
+                foreach (var item in HttpApiRouterOptions.GetList())
                 {
                     opt.Items.Add(new HttpRouterOptionItem()
                     {
