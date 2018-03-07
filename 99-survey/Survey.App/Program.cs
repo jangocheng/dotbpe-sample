@@ -2,6 +2,8 @@ using DotBPE.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading.Tasks;
+using Serilog;
 
 namespace Survey.App
 {
@@ -9,6 +11,10 @@ namespace Survey.App
     {
         private static void Main(string[] args)
         {
+            //任务系统出错的情况
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+
+
             //配置Dapper的映射方式
             //设置dapper在查询映射字符串时支持user_id -> UserId
             Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
@@ -25,17 +31,36 @@ namespace Survey.App
                 {
                     config.AddJsonFile("dotbpe.json", optional: true, reloadOnChange: true)
                       .AddJsonFile($"dotbpe.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true)
+                      .AddJsonFile("serilog.json", optional: false, reloadOnChange: false)
+                      .AddJsonFile($"serilog.{hostContext.HostingEnvironment.EnvironmentName}.json", optional: true)
                       .AddEnvironmentVariables(prefix: "DOTBPE_");
                 })
                 .ConfigureLogging((context, factory) =>
                 {
-                    factory.AddConfiguration(context.Configuration.GetSection("Logging"));
-                    factory.AddConsole();                  
+                    Log.Logger = new LoggerConfiguration()
+                     .ReadFrom.Configuration(context.Configuration)
+                     .CreateLogger();
+                   
+                    //添加
+                    factory.AddSerilog(dispose: true);
                 })
                 .ConfigureServices(ServerStartup.ConfigureServices);
 
             host.RunConsoleAsync().Wait();
             Console.WriteLine("服务已退出");
+        }
+
+        private static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            try
+            {
+                Log.Error(e.Exception, "TaskScheduler error");
+                Console.WriteLine(e.Exception.ToString());
+            }
+            catch
+            {
+
+            }
         }
     }
 }

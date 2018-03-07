@@ -1,5 +1,8 @@
 using DotBPE.Plugin.AspNetGateway;
+using DotBPE.Protobuf;
 using DotBPE.Protocol.Amp;
+using DotBPE.Rpc;
+using DotBPE.Rpc.Netty;
 using DotBPE.Rpc.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,25 +36,33 @@ namespace Survey.AspNetGateway
 
             //添加分布式缓存的实现
             services.AddSingleton<IDistributedCache, RedisCache>();
-            //登录相关的实现
+
+            //登录和用户认证相关的实现
             services.AddSingleton<ILoginService, LoginService>();
+            services.AddSingleton<IHttpPlugin, SessionPlugin>();
 
             //添加路由信息
             services.AddRoutes();
+                       
+            //添加默认AspNetGateWay相关依赖
+            services.AddSingleton<IProtobufObjectFactory, ProtobufObjectFactory>();
+            services.AddSingleton<IMessageParser<AmpMessage>, MessageParser>();
+            services.AddSingleton<IGateService, AmpGatewayService>();
 
-            // 自动转发服务
-            services.AddSingleton<IForwardService, ForwardService>();
+            //添加AuditLogger相关
+            services.AddSingleton<IAuditLoggerFormat<AmpMessage>, AuditLoggerFormat>();
 
-            //添加DotBPE的Amp协议支持
-            services.AddAmp();
 
             //添加转发服务配置
-            services.AddTransforClient<AmpMessage>();
+            services.AddGatewayClient().AddNettyClient<AmpMessage>();         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //如果是单独的Gateway 需要设置一下， ProxyBuilder和默认的服务HostBuilder中已经默认添加
+            DotBPE.Rpc.Environment.SetServiceProvider(app.ApplicationServices);
+
             //静态文件，默认目录是wwwroot
             app.UseDefaultFiles();
             app.UseStaticFiles();

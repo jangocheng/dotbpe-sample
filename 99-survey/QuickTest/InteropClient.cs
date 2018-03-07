@@ -1,5 +1,7 @@
 using CommandLine;
+using DotBPE.Rpc;
 using DotBPE.Protocol.Amp;
+using DotBPE.Rpc.Client;
 using DotBPE.Rpc.Utils;
 using Google.Protobuf;
 using Survey.Core;
@@ -7,12 +9,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using DotBPE.Protobuf;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace QuickTest
 {
     public class InteropClient
     {
-        private static readonly JsonFormatter AmpJsonFormatter = new JsonFormatter(new JsonFormatter.Settings(true));
+        private static readonly JsonFormatter AmpJsonFormatter = new JsonFormatter(new JsonFormatter.Settings(true).WithFormatEnumsAsIntegers(true));
 
         private class ClientOption
         {
@@ -92,46 +97,59 @@ namespace QuickTest
                 }
             }
 
-            //创建链接
-            var client = AmpClient.Create(this._options.Server, this._options.MultiplexCount);
-            var caller = new AmpCallInvoker(client);
+            var proxy = new ClientProxyBuilder()
+                .UseServer(this._options.Server)
+                .ConfigureServices(services =>
+                {
+                    services.AddSingleton<IProtobufObjectFactory, ProtobufObjectFactory>();
+                    services.AddSingleton<IMessageParser<AmpMessage>, DotBPE.Protobuf.MessageParser>();
+                })
+                .ConfigureLoggingServices(logger => logger.AddConsole())
+                .BuildDefault();
 
-            //开始跑测试了
-            foreach (var kvtc in tcCache)
+           
+            //创建链接         
+
+            using(var caller = proxy.GetService<ICallInvoker<AmpMessage>>())
             {
-                RunTestCase(caller, kvtc.Value);
+                var parser = proxy.GetService<IMessageParser<AmpMessage>>();
+                //开始跑测试了
+                foreach (var kvtc in tcCache)
+                {
+                    RunTestCase(caller, kvtc.Value, parser);
+                }
             }
-            client.CloseAsync().Wait();
+            
         }
 
         /// <summary>
         ///
         /// </summary>
         /// <param name="tc"></param>
-        private void RunTestCase(AmpCallInvoker caller, TestCase tc)
+        private void RunTestCase(ICallInvoker<AmpMessage> caller, TestCase tc, IMessageParser<AmpMessage> parser)
         {
             try
             {
                 Console.WriteLine("--------start run testcase {0}-----------", tc.Id);
                 Console.WriteLine("ServiceId: {0},MessageId:{1},Req:{2}", tc.ServiceId, tc.MessageId, tc.Json);
+                              
+                RequestData rd = new RequestData();
+                rd.ServiceId = tc.ServiceId;
+                rd.MessageId = tc.MessageId;
+                rd.Data = new Dictionary<string, string>();
+                rd.RawBody = tc.Json;
 
-                //构造请求消息
-                AmpMessage message = AmpMessage.CreateRequestMessage(tc.ServiceId, tc.MessageId);
-                tc.Request = ProtobufObjectFactory.GetRequestTemplate(tc.ServiceId, tc.MessageId);
+                AmpMessage req = parser.ToMessage(rd);
 
-                if (tc.Request == null)
+                if(req == null)
                 {
                     TOTAL_ERROR++;
-                    Console.WriteLine("执行测试出错:不存在对应的服务，请检查后重试");
+                    Console.WriteLine("协议转换出错，请检查serviceId={0}和messageId={1}",tc.ServiceId,tc.MessageId);
                     System.Environment.Exit(1);
                     return;
                 }
-                var descriptor = tc.Request.Descriptor;
-                tc.Request = descriptor.Parser.ParseJson(tc.Json);
-                message.Data = tc.Request.ToByteArray();
-                //请求消息构造完毕
 
-                AmpMessage rsp = caller.BlockingCall(message);
+                AmpMessage rsp = caller.BlockingCall(req);
 
                 if (rsp == null)
                 {
@@ -142,7 +160,8 @@ namespace QuickTest
                 {
                     Console.WriteLine(">>----end run testcase {0} success,response code = {1}-------", tc.Id, rsp.Code);
 
-                    var jsonRsp = MessageToJson(tc, rsp);
+                    var jsonRsp = parser.ToJson(rsp);
+
                     if (string.IsNullOrEmpty(jsonRsp))
                     {
                         TOTAL_ERROR++;
@@ -183,60 +202,6 @@ namespace QuickTest
             }
 
             return tc;
-        }
-
-        private string MessageToJson(TestCase tc, AmpMessage message)
-        {
-            if (message.Code == 0)
-            {
-                var return_code = 0;
-                var return_message = "";
-                string ret = "";
-                if (message != null)
-                {
-                    tc.Response = ProtobufObjectFactory.GetResponseTemplate(message.ServiceId, message.MessageId);
-                    if (tc.Response == null)
-                    {
-                        return ret;
-                    }
-
-                    if (message.Data != null)
-                    {
-                        tc.Response.MergeFrom(message.Data);
-                    }
-                    //提取内部的return_code 字段
-                    var field_code = tc.Response.Descriptor.FindFieldByName("return_code");
-                    if (field_code != null)
-                    {
-                        var retObjV = field_code.Accessor.GetValue(tc.Response);
-                        if (retObjV != null)
-                        {
-                            if (!int.TryParse(retObjV.ToString(), out return_code))
-                            {
-                                return_code = 0;
-                            }
-                        }
-                    }
-                    //提取return_message
-                    var field_msg = tc.Response.Descriptor.FindFieldByName("return_message");
-                    if (field_msg != null)
-                    {
-                        var retObjV = field_msg.Accessor.GetValue(tc.Response);
-                        if (retObjV != null)
-                        {
-                            return_message = retObjV.ToString();
-                        }
-                    }
-
-                    ret = AmpJsonFormatter.Format(tc.Response);
-                }
-
-                return "{\"return_code\":" + return_code + ",\"return_message\":\"" + return_message + "\",data:" + ret + "}";
-            }
-            else
-            {
-                return "{\"return_code\":" + message.Code + ",\"return_message\":\"\"}";
-            }
         }
     }
 }

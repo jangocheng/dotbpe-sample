@@ -13,9 +13,9 @@ namespace Survey.Service.InnerImpl
     public class APaperInnerService : APaperInnerServiceBase
     {
         private readonly Repository.APaperRepository _apaperRepo;
-        private readonly ClientProxy _proxy;
+        private readonly IClientProxy _proxy;
 
-        public APaperInnerService(Repository.APaperRepository apaperRepo,ClientProxy proxy)
+        public APaperInnerService(Repository.APaperRepository apaperRepo, IClientProxy proxy)
         {
             _apaperRepo = apaperRepo;
             _proxy = proxy;

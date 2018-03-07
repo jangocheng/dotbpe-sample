@@ -9,33 +9,28 @@ namespace GatewayForAspNet {
         public static List<HttpApiOption> GetList()
         {
             var list = new List<HttpApiOption>();
-
-
-    
-        
+            
             list.Add(new HttpApiOption()
             {
                 ServiceId = 10006,
                 MessageId = 1,
                 Path = "/api/greeter/sayhello",
                 Method = "get",
-                Description =""
-            });
-        
+                Description ="接口1",
+                Timeout = 0,
+                Plugin = ""
+            });     
     
-        
             list.Add(new HttpApiOption()
             {
                 ServiceId = 10006,
                 MessageId = 2,
                 Path = "/api/greeter/sayhelloagain",
                 Method = "get",
-                Description =""
+                Description ="接口2",
+                Timeout = 0,
+                Plugin = ""
             });
-        
-    
-
-
             return list;
         }
     }

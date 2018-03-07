@@ -23,11 +23,11 @@
         "configuration": "127.0.0.1"        
     },
     "Logging": {
-        "LogLevel": {
-            "Default": "Information",
-            "Survey": "Information",
-            "System": "Warning",
-            "Microsoft": "Warning"
-        }
+      "LogLevel": {
+        "Default": "Information",
+        "Survey": "Information",
+        "System": "Debug",
+        "Microsoft": "Debug"
+      }
     }
 }

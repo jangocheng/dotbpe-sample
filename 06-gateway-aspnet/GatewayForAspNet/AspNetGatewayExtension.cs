@@ -1,8 +1,6 @@
 using DotBPE.Plugin.AspNetGateway;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GatewayForAspNet
 {
@@ -31,10 +29,12 @@ namespace GatewayForAspNet
                         ServiceId = item.ServiceId,
                         MessageId = item.MessageId,
                         Method = item.Method,
-                        Path = item.Path
+                        Path = item.Path,
+                        Description = item.Description,
+                        PluginName = item.Plugin,
+                        TimeOut = item.Timeout
                     });
                 }
-
             });
             return services;
         }

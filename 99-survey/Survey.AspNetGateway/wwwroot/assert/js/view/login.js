@@ -26,7 +26,7 @@ define(function (require, exports, module) {
                         alert(res.return_message||"用户名或密码错误，请检查后重试");
                     }
                 },
-                function(error){}
+                function (request, status, error) { console.error(error) }
             );
         });
 

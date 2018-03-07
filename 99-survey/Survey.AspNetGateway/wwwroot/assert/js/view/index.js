@@ -118,7 +118,7 @@
                    callback();
                 }
                 else {
-                   location.href = "/html/login.html"
+                   //location.href = "/html/login.html"
                 }
             },
             error: function (err) { location.href = "/html/login.html" }

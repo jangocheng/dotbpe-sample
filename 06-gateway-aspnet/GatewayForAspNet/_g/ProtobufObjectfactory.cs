@@ -4,43 +4,40 @@
 #region Designer generated code
 
 using Google.Protobuf;
+using DotBPE.Protobuf;
 
 namespace GatewayForAspNet
 {
-    public class ProtobufObjectFactory
+    public class ProtobufObjectFactory:IProtobufObjectFactory
     {
-        public static IMessage GetRequestTemplate(int serviceId, int messageId)
+        public IMessage GetRequestTemplate(int serviceId, int messageId)
         {
 
-    
             if (serviceId == 10006 && messageId == 1)
             {
                 return new HelloReq();
             }
-    
+
             if (serviceId == 10006 && messageId == 2)
             {
                 return new HelloReq();
             }
-    
 
             return null;
         }
 
-        public static IMessage GetResponseTemplate(int serviceId, int messageId)
+        public IMessage GetResponseTemplate(int serviceId, int messageId)
         {
 
-    
             if (serviceId == 10006 && messageId == 1)
             {
                 return new HelloRes();
             }
-    
+
             if (serviceId == 10006 && messageId == 2)
             {
                 return new HelloRes();
             }
-    
 
             return null;
         }
