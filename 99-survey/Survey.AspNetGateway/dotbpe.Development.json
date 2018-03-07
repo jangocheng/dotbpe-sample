@@ -1,11 +1,3 @@
 {
-  "Logging": {
-    "IncludeScopes": false,
-    "LogLevel": {
-        "Default": "Information",
-        "Survey": "Debug",
-        "System": "Information",
-        "Microsoft": "Information"
-    }
-  }
+ 
 }

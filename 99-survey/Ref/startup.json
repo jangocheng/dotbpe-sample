@@ -3,7 +3,7 @@
         {
             // Survey-App #1
             "name": "survey-app",
-            "script": "./service.sh",
+            "script": "./service",
             "exec_interpreter": "bash",
             "cwd": "./survey-app",
             "args": null, //入参
@@ -18,7 +18,7 @@
         {
             // Survey-Gateway #1
             "name": "survey-gateway",
-            "script": "./service.sh",
+            "script": "./service",
             "exec_interpreter": "bash",
             "cwd": "./survey-gateway",
             "args": null, //入参

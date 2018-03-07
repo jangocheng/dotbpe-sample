@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotBPE.Protobuf" Version="1.1.23" />
-    <PackageReference Include="DotBPE.Protocol.Amp" Version="1.1.23" />
+    <PackageReference Include="DotBPE.Protobuf" Version="1.1.24" />
+    <PackageReference Include="DotBPE.Protocol.Amp" Version="1.1.24" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="2.0.0" />
   </ItemGroup>
 

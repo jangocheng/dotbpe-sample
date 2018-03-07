@@ -18,8 +18,7 @@ define(function (require, exports, module) {
                         alert("意外错误，请刷新后重试");
                         return;
                     }
-                    if(res.return_code ==0){ //登录成功
-                        alert("登录成功");
+                    if(res.return_code ==0){ //登录成功                       
                         location.href = "/html/index.html"
                     }
                     else{
