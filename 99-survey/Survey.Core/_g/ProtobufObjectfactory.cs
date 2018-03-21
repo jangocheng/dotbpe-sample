@@ -5,20 +5,13 @@
 
 using Google.Protobuf;
 using DotBPE.Protobuf;
-using Microsoft.Extensions.Logging;
 
 namespace Survey.Core
 {
     public class ProtobufObjectFactory:IProtobufObjectFactory
     {
-        private ILogger _logger;
-        public ProtobufObjectFactory(ILogger<ProtobufObjectFactory> logger)
-        {
-            _logger = logger;
-        }
         public IMessage GetRequestTemplate(int serviceId, int messageId)
         {
-            _logger.LogDebug("get request template serviceId={serviceId},messageId={messageId}", serviceId, messageId);
 
             if (serviceId == 10000 && messageId == 11)
             {
@@ -85,7 +78,6 @@ namespace Survey.Core
 
         public IMessage GetResponseTemplate(int serviceId, int messageId)
         {
-            _logger.LogDebug("get response template serviceId={serviceId},messageId={messageId}", serviceId, messageId);
 
             if (serviceId == 10000 && messageId == 11)
             {

@@ -11,14 +11,16 @@ message VoidReq{
 
 // 只返回默认的返回
 message VoidRsp{
-   string return_message = 1; //返回错误信息
+   //返回错误信息
+   string return_message = 1;
 }
 
 
 
 message APaperStaDetail {
+    //问题id
+    string question_id = 10 ;
 
-    string question_id = 10 ; //问题
-
-    repeated int32 oa = 11 ;  //答案统计信息
+    //答案统计信息
+    repeated int32 oa = 11 ;
 }

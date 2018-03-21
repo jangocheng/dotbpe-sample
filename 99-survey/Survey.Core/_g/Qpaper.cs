@@ -106,8 +106,7 @@ namespace Survey.Core {
 
   #region Messages
   /// <summary>
-  ///-----------start----------服务请求和响应顶层的消息体定义--------------------------------
-  /// 什么字段都没有，请求
+  /// 保存问卷的请求
   /// </summary>
   public sealed partial class SaveQPaperReq : pb::IMessage<SaveQPaperReq> {
     private static readonly pb::MessageParser<SaveQPaperReq> _parser = new pb::MessageParser<SaveQPaperReq>(() => new SaveQPaperReq());
@@ -1240,6 +1239,9 @@ namespace Survey.Core {
     /// <summary>Field number for the "qpaper_id" field.</summary>
     public const int QpaperIdFieldNumber = 10;
     private int qpaperId_;
+    /// <summary>
+    ///问卷ID
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int QpaperId {
       get { return qpaperId_; }

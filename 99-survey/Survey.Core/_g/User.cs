@@ -514,6 +514,9 @@ namespace Survey.Core {
 
   }
 
+  /// <summary>
+  /// 登录请求消息
+  /// </summary>
   public sealed partial class LoginReq : pb::IMessage<LoginReq> {
     private static readonly pb::MessageParser<LoginReq> _parser = new pb::MessageParser<LoginReq>(() => new LoginReq());
     private pb::UnknownFieldSet _unknownFields;
@@ -770,6 +773,9 @@ namespace Survey.Core {
 
   }
 
+  /// <summary>
+  ///登录响应消息
+  /// </summary>
   public sealed partial class LoginRsp : pb::IMessage<LoginRsp> {
     private static readonly pb::MessageParser<LoginRsp> _parser = new pb::MessageParser<LoginRsp>(() => new LoginRsp());
     private pb::UnknownFieldSet _unknownFields;

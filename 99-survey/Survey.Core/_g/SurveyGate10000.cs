@@ -47,8 +47,8 @@ namespace Survey.Core {
             "ci9nZXQSA2dldBoS6I635Y+W562U5Y235L+h5oGvEncKDEdldEFQYXBlclN0",
             "YRIXLmRvdGJwZS5HZXRRUGFwZXJTdGFSZXEaFC5kb3RicGUuUVBhcGVyU3Rh",
             "UnNwIjjQ8xgY2vMYMAoPL2FwaS9xcGFwZXIvc3RhEgNnZXQaGOiOt+WPlumX",
-            "ruWNt+e7n+iuoeS/oeaBrxoFyPMYkE5CGEgBqgILU3VydmV5LkNvcmXw8xgB",
-            "+PMYAVAAYgZwcm90bzM="));
+            "ruWNt+e7n+iuoeS/oeaBrxoFyPMYkE5CHEgBqgILU3VydmV5LkNvcmXw8xgB",
+            "+PMYAejzGAFQAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::DotBPE.Protobuf.DotbpeOptionReflection.Descriptor, global::Survey.Core.ApaperReflection.Descriptor, global::Survey.Core.QpaperReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null));

@@ -318,7 +318,7 @@ namespace Survey.Core {
     public const int QuestionIdFieldNumber = 10;
     private string questionId_ = "";
     /// <summary>
-    ///问题
+    ///问题id
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string QuestionId {
