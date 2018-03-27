@@ -35,7 +35,8 @@ service UserGateService{
         option (http_api_option) = {
             path :"/api/gate/login",
             method : "post",
-            description : "用户登录"
+            description : "用户登录",
+            plugin:"Survey.AspNetGateway.LoginPostProcesss,Survey.AspNetGateway"
         };
     };
 

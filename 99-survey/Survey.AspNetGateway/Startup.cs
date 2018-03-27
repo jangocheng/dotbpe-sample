@@ -1,6 +1,9 @@
-using DotBPE.Plugin.AspNetGateway;
+using DotBPE.AspNetGateway;
+using DotBPE.Protobuf;
 using DotBPE.Protocol.Amp;
+using DotBPE.Rpc;
 using DotBPE.Rpc.Options;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Caching.Distributed;
@@ -39,14 +42,25 @@ namespace Survey.AspNetGateway
             //添加路由信息
             services.AddRoutes();
 
-            // 自动转发服务
-            services.AddSingleton<IForwardService, ForwardService>();
+
+            services.AddSingleton<IMessageParser<AmpMessage>, MessageParser>();
+            services.AddSingleton<IProtobufObjectFactory, ProtobufObjectFactory>();
+            services.AddProtocolPipe<AmpMessage>();
+
 
             //添加DotBPE的Amp协议支持
-            services.AddAmp();
+            //services.AddDotBPE();
 
             //添加转发服务配置
-            services.AddTransforClient<AmpMessage>();
+            services.AddGatewayClient();
+
+            //cookie 认证相关
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                 .AddCookie(options => {
+                     options.Cookie.Name = ".Survey";
+                     options.Cookie.HttpOnly = true;
+                     options.LoginPath = "/html/login.html";
+                 });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,8 +70,9 @@ namespace Survey.AspNetGateway
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
             //使用网关
-            app.UseGateWay();
+            app.UseGateway();
         }
     }
 }

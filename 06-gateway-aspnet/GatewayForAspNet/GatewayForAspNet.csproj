@@ -1,24 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>netcoreapp2.0</TargetFramework>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <PackageReference Include="DotBPE.Plugin.AspNetGateway" Version="1.1.13" />
-      <PackageReference Include="DotBPE.Protobuf" Version="1.1.12" />
-      <PackageReference Include="DotBPE.Protocol.Amp" Version="1.1.12" />
-      <PackageReference Include="DotBPE.Rpc.Hosting" Version="1.1.12" />
-      <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="_g\" />
-    </ItemGroup>
-    <ItemGroup>
-      <None Update="dotbpe.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DotBPE.Protobuf" Version="1.1.26"/>
+    <PackageReference Include="DotBPE.Protocol.Amp" Version="1.1.26"/>
+    <PackageReference Include="DotBPE.Rpc.Hosting" Version="1.1.26"/>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.2"/>
+    <PackageReference Include="DotBPE.AspNetGateway" Version="1.1.1"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_g\"/>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="dotbpe.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

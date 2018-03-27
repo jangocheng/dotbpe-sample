@@ -1,4 +1,4 @@
-using DotBPE.Plugin.AspNetGateway;
+using DotBPE.AspNetGateway;
 using DotBPE.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
 using Survey.Core;
@@ -19,21 +19,24 @@ namespace Survey.AspNetGateway
         {
             services.Configure<HttpRouterOption>(opt =>
             {
-                opt.CookieMode = CookieMode.Manual;
+                
 
                 if(opt.Items == null)
                 {
                     opt.Items = new List<HttpRouterOptionItem>();
                 }
                 
-                foreach(var item in HttpApiOptions.GetList())
+                foreach(var item in HttpApiRouterOptions.GetList())
                 {
                     opt.Items.Add(new HttpRouterOptionItem()
                     {
                         ServiceId = item.ServiceId,
                         MessageId = item.MessageId,
                         Method = item.Method,
-                        Path = item.Path
+                        Path = item.Path,
+                        Description = item.Description,
+                        TimeOut = item.Timeout,
+                        PluginName = item.Plugin                        
                     });
                 }
 

@@ -1,4 +1,5 @@
-using DotBPE.Plugin.AspNetGateway;
+using DotBPE.AspNetGateway;
+using DotBPE.Protobuf;
 using DotBPE.Protocol.Amp;
 using DotBPE.Rpc;
 using Microsoft.AspNetCore.Builder;
@@ -26,10 +27,11 @@ namespace GatewayForAspNet
 
             //添加默认AspNetGateWay相关依赖
             services.AddSingleton<IMessageParser<AmpMessage>, MessageParser>();
-            services.AddSingleton<IGateService, DefaultGateService<AmpMessage>>();
+            services.AddSingleton<IProtobufObjectFactory, ProtobufObjectFactory>();
+            services.AddProtocolPipe<AmpMessage>();
 
             //添加服务端支持
-            services.AddDotBPE().AddAmpClient();
+            services.AddDotBPE();
 
             services.AddServiceActors<AmpMessage>((actors) =>
             {
@@ -38,6 +40,8 @@ namespace GatewayForAspNet
 
             //添加RPC服务
             services.AddSingleton<IHostedService, VirtualRpcHostService>();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +49,7 @@ namespace GatewayForAspNet
         {
 
             //使用网关
-            app.UseGateWay();
+            app.UseGateway();
         }
     }
 }
