@@ -18,15 +18,14 @@ define(function (require, exports, module) {
                         alert("意外错误，请刷新后重试");
                         return;
                     }
-                    if(res.return_code ==0){ //登录成功
-                        alert("登录成功");
+                    if(res.return_code ==0){ //登录成功                       
                         location.href = "/html/index.html"
                     }
                     else{
                         alert(res.return_message||"用户名或密码错误，请检查后重试");
                     }
                 },
-                function(error){}
+                function (request, status, error) { console.error(error) }
             );
         });
 

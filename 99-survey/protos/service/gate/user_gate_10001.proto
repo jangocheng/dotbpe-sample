@@ -11,7 +11,7 @@ import "message/user.proto"; //引入消息，因为部分消息和InnerService�
 
 option (generic_objectfactory) = true;
 option (generic_http_api_routes) = true; //生成路由配置信息
-
+option (generic_markdown_doc) = true; //生成接口文档
 
 service UserGateService{
 
@@ -64,7 +64,10 @@ service UserGateService{
 }
 
 message CheckLoginReq{
-    string client_ip = 1; //用户端IP
-    string identity = 2; // 用户标识
-    string x_request_id = 3 ; //请求的唯一标识，用于服务间传递
+    //用户端IP
+    string client_ip = 1;
+    // 用户标识
+    string identity = 2;
+    //请求的唯一标识，用于服务间传递
+    string x_request_id = 3 ;
 }

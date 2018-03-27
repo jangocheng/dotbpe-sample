@@ -1,5 +1,6 @@
 using Google.Protobuf;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using Survey.Core;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,12 @@ namespace Survey.Core
     {
         private static readonly string PREX = "BPESESS:";
         private readonly IDistributedCache _cache;
-        public LoginService(IDistributedCache cache)
+        private readonly ILogger<LoginService> _logger;
+
+        public LoginService(IDistributedCache cache,ILogger<LoginService> logger)
         {
             _cache = cache;
+            _logger = logger;
         }
 
         public Task RefreshSessionAsync(string sessionId)
@@ -52,7 +56,9 @@ namespace Survey.Core
             {
                SlidingExpiration  = TimeSpan.FromMinutes(20)
             };
+    
             return _cache.SetAsync(PREX + user.BpeSessionId, user.ToByteArray(), option);
+          
         }
 
         public Task RemoveSessionAsync(string sessionId)

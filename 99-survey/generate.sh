@@ -37,6 +37,11 @@ fi
 
 mkdir -p $OUT_DIR
 
+<<<<<<< HEAD
 
 $PROTOC -I=$PROTO_DIR  --csharp_out=$OUT_DIR --dotbpe_out=$OUT_DIR \
 	$PROTO_DIR/message/*.proto $PROTO_DIR/service/gate/*.proto $PROTO_DIR/service/inner/*.proto --plugin=$PLUGIN
+=======
+$PROTOC -I=$PROTO_DIR  --csharp_out=$OUT_DIR --dotbpe_out=$OUT_DIR \
+  $PROTO_DIR/{message/common,message/apaper,message/qpaper,message/user}.proto  $PROTO_DIR/service/{gate/*,inner/*}.proto  --plugin=$PLUGIN
+>>>>>>> f5c1d08761a3e9e7c5eb30f2c9e1ba2be6b1c63a

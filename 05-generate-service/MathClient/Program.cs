@@ -20,7 +20,7 @@ namespace MathClient
 
         public async static Task RunClient()
         {
-            var proxy = new ClientProxyBuilder().UseServer("127.0.0.1:6201").ConfigureServices(services=>services.AddLogging()).BuildDefault();
+            var proxy = new ClientProxyBuilder().UseServer("127.0.0.1:6201").BuildDefault();
             using (var client = proxy.GetClient<MathCommon.MathClient>())
             {
                 Console.WriteLine("ready to send message");

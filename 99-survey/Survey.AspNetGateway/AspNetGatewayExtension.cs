@@ -1,5 +1,10 @@
 using DotBPE.AspNetGateway;
 using DotBPE.Protobuf;
+using DotBPE.Protocol.Amp;
+using DotBPE.Rpc;
+using DotBPE.Rpc.Client;
+using DotBPE.Rpc.Codes;
+using DotBPE.Rpc.Netty;
 using Microsoft.Extensions.DependencyInjection;
 using Survey.Core;
 using System;
@@ -10,7 +15,7 @@ namespace Survey.AspNetGateway
 {
     public static class AspNetGatewayExtension
     {
-        /// <summary>
+       /// <summary>
         /// 扩展路由配置信息
         /// </summary>
         /// <param name="builder"></param>
@@ -19,13 +24,13 @@ namespace Survey.AspNetGateway
         {
             services.Configure<HttpRouterOption>(opt =>
             {
-                
+
 
                 if(opt.Items == null)
                 {
                     opt.Items = new List<HttpRouterOptionItem>();
                 }
-                
+
                 foreach(var item in HttpApiRouterOptions.GetList())
                 {
                     opt.Items.Add(new HttpRouterOptionItem()
@@ -36,12 +41,13 @@ namespace Survey.AspNetGateway
                         Path = item.Path,
                         Description = item.Description,
                         TimeOut = item.Timeout,
-                        PluginName = item.Plugin                        
+                        PluginName = item.Plugin
                     });
                 }
-
             });
             return services;
         }
+
+
     }
 }

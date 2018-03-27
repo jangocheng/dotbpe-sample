@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotBPE.Protocol.Amp" Version="1.1.12" />
+    <PackageReference Include="DotBPE.Protocol.Amp" Version="1.1.18" />
   </ItemGroup>
 
 </Project>

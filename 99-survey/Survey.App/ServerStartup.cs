@@ -1,4 +1,5 @@
 using DotBPE.Hosting;
+using DotBPE.Protobuf;
 using DotBPE.Protocol.Amp;
 using DotBPE.Rpc;
 using DotBPE.Rpc.Hosting;
@@ -28,10 +29,19 @@ namespace Survey.App
 
             services.Configure<RedisCacheOptions>(context.Configuration.GetSection("redis"));
 
-            //添加分布式缓存的实现
+            //添加分布式缓存的实现   
             services.AddSingleton<IDistributedCache, RedisCache>();
+
+
+
             //登录相关的实现
             services.AddSingleton<ILoginService, LoginService>();
+
+
+            services.AddSingleton<IProtobufObjectFactory, ProtobufObjectFactory>();
+
+            //添加AuditLog日志
+            services.AddSingleton<IAuditLoggerFormat<AmpMessage>, AuditLoggerFormat>();
 
             // 使用AMP协议
             services.AddDotBPE();
@@ -56,7 +66,7 @@ namespace Survey.App
             services.AddSingleton<IConnectionManagerFactory, ConnectionManagerFactory>();
 
             //添加挂载的宿主服务
-            services.AddScoped<IHostedService, RpcHostedService>();
+            services.AddSingleton<IHostedService, RpcHostedService>();
         }
 
         /// <summary>

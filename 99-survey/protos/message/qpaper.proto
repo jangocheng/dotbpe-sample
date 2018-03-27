@@ -8,15 +8,16 @@ option optimize_for = SPEED;
 import public "message/common.proto";
 
 //-----------start----------服务请求和响应顶层的消息体定义--------------------------------
-// 什么字段都没有，请求
+
+// 保存问卷的请求
 message SaveQPaperReq{
-
+    //用户端IP
     string client_ip = 1; //用户端IP
+    // 用户标识
     string identity = 2; // 用户标识
+    //请求的唯一标识，用于服务间传递
     string x_request_id = 3 ; //请求的唯一标识，用于服务间传递
-
-
-
+    // 问卷ID
     int32 qpaper_id = 10 ; // 问卷ID
     string subject = 11 ; // 问卷标题
     string start_time = 12 ; // 问卷开始时间
@@ -31,7 +32,6 @@ message SaveQPaperReq{
 message SaveQPaperRsp{
 
     string return_message = 1; //返回错误信息
-
 
     int32 qpaper_id = 10 ; // 保存后的问卷ID
 }
@@ -68,7 +68,7 @@ message GetQPaperReq{
     string x_request_id = 3 ; //请求的唯一标识，用于服务间传递
 
 
-    int32 qpaper_id = 10 ;
+    int32 qpaper_id = 10 ; //问卷ID
     bool check_role = 11 ; // 是否判断用户权限
 }
 

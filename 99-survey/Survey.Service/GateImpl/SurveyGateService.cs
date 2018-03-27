@@ -7,8 +7,8 @@ namespace Survey.Service.GateImpl
 {
     public class SurveyGateService : SurveyGateServiceBase
     {
-        private readonly ClientProxy _proxy;
-        public SurveyGateService(ClientProxy proxy)
+        private readonly IClientProxy _proxy;
+        public SurveyGateService(IClientProxy proxy)
         {
             this._proxy = proxy;
         }

@@ -16,7 +16,7 @@ namespace MathClient
         {
             //DotBPE.Rpc.Environment.SetLogger(new DotBPE.Rpc.Logging.ConsoleLogger());
 
-            new ClientProxyBuilder().UseServer("127.0.0.1:6201").ConfigureServices(services=>services.AddLogging()).BuildDefault();
+            new ClientProxyBuilder().UseServer("127.0.0.1:6201").BuildDefault();
             using (var caller = DotBPE.Rpc.Environment.ServiceProvider.GetService<ICallInvoker<AmpMessage>>())
             {
                 Console.WriteLine("ready to send message");

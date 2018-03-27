@@ -9,9 +9,9 @@ namespace Survey.Service.GateImpl
     public class UserGateService : UserGateServiceBase
     {
 
-        private readonly ClientProxy _proxy;
+        private readonly IClientProxy _proxy;
         private readonly ILoginService _loginService;
-        public UserGateService(ClientProxy proxy,ILoginService loginService)
+        public UserGateService(IClientProxy proxy,ILoginService loginService)
         {
             this._proxy = proxy;
             this._loginService = loginService;
@@ -67,8 +67,7 @@ namespace Survey.Service.GateImpl
                 user.LoginTimestamp = 1;
                 user.Identity = result.Data.Account;
 
-                await this._loginService.SetSessionAsync(user); //设置登录的Session信息到redis 中
-
+                await this._loginService.SetSessionAsync(user).ConfigureAwait(false); //设置登录的Session信息到redis 中
 
                 result.Data.BpeSessionId = sessionId; //登录成功 生成sessionId
             }
