@@ -37,9 +37,7 @@ namespace Survey.AspNetGateway
             //添加分布式缓存的实现
             services.AddSingleton<IDistributedCache, RedisCache>();
 
-            //登录和用户认证相关的实现
-            services.AddSingleton<ILoginService, LoginService>();
-            services.AddSingleton<IHttpPlugin, SessionPlugin>();
+   
 
             //添加路由信息
             services.AddRoutes();
@@ -47,11 +45,6 @@ namespace Survey.AspNetGateway
             //添加默认AspNetGateWay相关依赖
             services.AddSingleton<IProtobufObjectFactory, ProtobufObjectFactory>();
             services.AddSingleton<IMessageParser<AmpMessage>, MessageParser>();
-            services.AddSingleton<IGateService, AmpGatewayService>();
-
-
-            services.AddSingleton<IMessageParser<AmpMessage>, MessageParser>();
-            services.AddSingleton<IProtobufObjectFactory, ProtobufObjectFactory>();
             services.AddProtocolPipe<AmpMessage>();
 
 

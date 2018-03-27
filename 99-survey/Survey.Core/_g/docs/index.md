@@ -34,7 +34,9 @@ HTTP API 接口文档一览
 ##  2 服务一览表  
 
 
-### 2.0 [SurveyGateService] 问卷服务
+### 2.1 SurveyGateService
+>  问卷服务
+
 | 序号 |  服务名  |  消息ID  |  请求地址  |  说明  |  
 | ------------| ------------ | ------------ | ------------ | ------------ |
 | 1 | SaveQPaper |  10000.11  |  /api/qpaper/save  |  保存问卷  |
@@ -46,7 +48,9 @@ HTTP API 接口文档一览
 | 7 | GetAPaper |  10000.23  |  /api/apaper/get  |  获取答卷消息  |
 | 8 | GetAPaperSta |  10000.24  |  /api/qpaper/sta  |  获取答卷统计  |
 
-### 2.1 [UserGateService] 无说明
+### 2.2 UserGateService
+>  无说明
+
 | 序号 |  服务名  |  消息ID  |  请求地址  |  说明  |  
 | ------------| ------------ | ------------ | ------------ | ------------ |
 | 1 | Register |  10001.31  |  /api/user/register  |  注册  |

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
+
 using DotBPE.AspNetGateway;
-=======
-using DotBPE.Plugin.AspNetGateway;
->>>>>>> f5c1d08761a3e9e7c5eb30f2c9e1ba2be6b1c63a
 using DotBPE.Protobuf;
 using DotBPE.Protocol.Amp;
 using DotBPE.Rpc;

@@ -1,11 +1,12 @@
-[SurveyGateService] 问卷服务
+SurveyGateService
 --------------------------
 	问卷服务
-## 服务定义
+	
+## 1. Service Definition
 
 
-### [10000.11] 保存问卷 
-> SurveyGateService.SaveQPaper  
+### 1.1 SurveyGateService.SaveQPaper 
+> 10000.11 
 > 保存问卷
 我是第二行的注释  
 
@@ -17,9 +18,12 @@
 
 
 
-#### 请求参数
+*公共参数不显示，关于公共参数可参考首页说明*
 
-> [SaveQPaperReq]  保存问卷的请求
+#### 1.1.1 Request
+
+
+[SaveQPaperReq]  保存问卷的请求
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -35,10 +39,11 @@
 
 
 
-#### 响应参数
+#### 1.1.2 Response
 
 
-> [SaveQPaperRsp]  
+
+[SaveQPaperRsp]  
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -46,8 +51,8 @@
 |  qpaper_id  |  int32  |  保存后的问卷ID  |   qpaperId   |
 
 
-### [10000.12] 获取问卷列表 
-> SurveyGateService.QueryQPaperList  
+### 1.2 SurveyGateService.QueryQPaperList 
+> 10000.12 
 > 获取问卷列表  
 
 
@@ -58,9 +63,12 @@
 
 
 
-#### 请求参数
+*公共参数不显示，关于公共参数可参考首页说明*
 
-> [QueryQPaperReq]  查询问卷的请求
+#### 1.2.1 Request
+
+
+[QueryQPaperReq]  查询问卷的请求
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -74,10 +82,11 @@
 
 
 
-#### 响应参数
+#### 1.2.2 Response
 
 
-> [QPaperListRsp]  查询问卷的列表
+
+[QPaperListRsp]  查询问卷的列表
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -86,8 +95,8 @@
 |  total  |  int32  |  记录数，只在page_index = 1 才返回  |   total   |
 
 
-### [10000.13] 获取问卷详情 
-> SurveyGateService.GetQPaper  
+### 1.3 SurveyGateService.GetQPaper 
+> 10000.13 
 > 获取问卷详情  
 
 
@@ -98,9 +107,12 @@
 
 
 
-#### 请求参数
+*公共参数不显示，关于公共参数可参考首页说明*
 
-> [GetQPaperReq]  获取单个问卷的请求
+#### 1.3.1 Request
+
+
+[GetQPaperReq]  获取单个问卷的请求
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -112,10 +124,11 @@
 
 
 
-#### 响应参数
+#### 1.3.2 Response
 
 
-> [QPaperRsp]  包括单个问卷信息的响应
+
+[QPaperRsp]  包括单个问卷信息的响应
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -128,8 +141,8 @@
 |  create_user_id  |  string  |  注释  |   createUserId   |
 
 
-### [10000.14] 获取问卷完整消息 
-> SurveyGateService.GetQPaperFull  
+### 1.4 SurveyGateService.GetQPaperFull 
+> 10000.14 
 > 获取问卷完整消息  
 
 
@@ -140,9 +153,12 @@
 
 
 
-#### 请求参数
+*公共参数不显示，关于公共参数可参考首页说明*
 
-> [GetQPaperReq]  获取单个问卷的请求
+#### 1.4.1 Request
+
+
+[GetQPaperReq]  获取单个问卷的请求
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -154,11 +170,12 @@
 
 
 
-#### 响应参数
+#### 1.4.2 Response
 
 
-### [10000.21] 保存问卷 
-> SurveyGateService.SaveAPaper  
+
+### 1.5 SurveyGateService.SaveAPaper 
+> 10000.21 
 > 保存问卷  
 
 
@@ -169,9 +186,12 @@
 
 
 
-#### 请求参数
+*公共参数不显示，关于公共参数可参考首页说明*
 
-> [SaveAPaperReq]  什么字段都没有，请求
+#### 1.5.1 Request
+
+
+[SaveAPaperReq]  什么字段都没有，请求
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -185,10 +205,11 @@
 
 
 
-#### 响应参数
+#### 1.5.2 Response
 
 
-> [SaveAPaperRsp]  
+
+[SaveAPaperRsp]  
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -196,8 +217,8 @@
 |  apaper_id  |  int32  |  保存后的问卷ID  |   apaperId   |
 
 
-### [10000.22] 获取答卷列表 
-> SurveyGateService.QueryAPaperList  
+### 1.6 SurveyGateService.QueryAPaperList 
+> 10000.22 
 > 获取答卷列表  
 
 
@@ -208,9 +229,12 @@
 
 
 
-#### 请求参数
+*公共参数不显示，关于公共参数可参考首页说明*
 
-> [QueryAPaperReq]  查询问卷的请求
+#### 1.6.1 Request
+
+
+[QueryAPaperReq]  查询问卷的请求
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -225,10 +249,11 @@
 
 
 
-#### 响应参数
+#### 1.6.2 Response
 
 
-> [APaperListRsp]  查询问卷的列表
+
+[APaperListRsp]  查询问卷的列表
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -237,8 +262,8 @@
 |  total  |  int32  |  每页的记录数  |   total   |
 
 
-### [10000.23] 获取答卷消息 
-> SurveyGateService.GetAPaper  
+### 1.7 SurveyGateService.GetAPaper 
+> 10000.23 
 > 获取答卷消息  
 
 
@@ -249,9 +274,12 @@
 
 
 
-#### 请求参数
+*公共参数不显示，关于公共参数可参考首页说明*
 
-> [GetAPaperReq]  获取单个问卷的请求
+#### 1.7.1 Request
+
+
+[GetAPaperReq]  获取单个问卷的请求
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -263,10 +291,11 @@
 
 
 
-#### 响应参数
+#### 1.7.2 Response
 
 
-> [APaperRsp]  包括单个问卷信息的响应
+
+[APaperRsp]  包括单个问卷信息的响应
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -275,8 +304,8 @@
 |  qpaper  |  [DTOQPaperWithQuestion](#dtoqpaperwithquestion)  |    |   qpaper   |
 
 
-### [10000.24] 获取答卷统计 
-> SurveyGateService.GetAPaperSta  
+### 1.8 SurveyGateService.GetAPaperSta 
+> 10000.24 
 > 获取答卷统计  
 
 
@@ -287,9 +316,12 @@
 
 
 
-#### 请求参数
+*公共参数不显示，关于公共参数可参考首页说明*
 
-> [GetQPaperStaReq]  
+#### 1.8.1 Request
+
+
+[GetQPaperStaReq]  
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -300,10 +332,11 @@
 
 
 
-#### 响应参数
+#### 1.8.2 Response
 
 
-> [QPaperStaRsp]  
+
+[QPaperStaRsp]  
 
 |  字段名  |  类型  |  注释  |   JSON Name  |
 | ------------ | ------------ | ------------ | ------------ |
@@ -314,11 +347,13 @@
 
 
 
-## 相关消息定义
+## 2. Message Definition
 
-### <span id="saveqpaperreq">[SaveQPaperReq]</span> 保存问卷的请求
+### <span id="saveqpaperreq">SaveQPaperReq</span> 
+> 保存问卷的请求  
+
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  client_ip  |  string  |  用户端IP  |   clientIp   |
 |  identity  |  string  |  用户标识  |   identity   |
 |  x_request_id  |  string  |  请求的唯一标识，用于服务间传递  |   xRequestId   |
@@ -329,17 +364,19 @@
 |  description  |  string  |  注释和说明  |   description   |
 |  questions  |  [DTOQuestion](#dtoquestion)  |  问题列表  |   questions   |
 
+### <span id="saveqpaperrsp">SaveQPaperRsp</span> 
+>   
 
-### <span id="saveqpaperrsp">[SaveQPaperRsp]</span> 
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  return_message  |  string  |  返回错误信息  |   returnMessage   |
 |  qpaper_id  |  int32  |  保存后的问卷ID  |   qpaperId   |
 
+### <span id="queryqpaperreq">QueryQPaperReq</span> 
+> 查询问卷的请求  
 
-### <span id="queryqpaperreq">[QueryQPaperReq]</span> 查询问卷的请求
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  client_ip  |  string  |  用户端IP  |   clientIp   |
 |  identity  |  string  |  用户标识  |   identity   |
 |  x_request_id  |  string  |  请求的唯一标识，用于服务间传递  |   xRequestId   |
@@ -348,28 +385,31 @@
 |  page  |  int32  |  当前页码  |   page   |
 |  rp  |  int32  |  每页记录数  |   rp   |
 
+### <span id="qpaperlistrsp">QPaperListRsp</span> 
+> 查询问卷的列表  
 
-### <span id="qpaperlistrsp">[QPaperListRsp]</span> 查询问卷的列表
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  return_message  |  string  |  返回错误信息  |   returnMessage   |
 |  list  |  [DTOQPaper](#dtoqpaper)  |  列表  |   list   |
 |  total  |  int32  |  记录数，只在page_index = 1 才返回  |   total   |
 
+### <span id="getqpaperreq">GetQPaperReq</span> 
+> 获取单个问卷的请求  
 
-### <span id="getqpaperreq">[GetQPaperReq]</span> 获取单个问卷的请求
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  client_ip  |  string  |  用户端IP  |   clientIp   |
 |  identity  |  string  |  用户标识  |   identity   |
 |  x_request_id  |  string  |  请求的唯一标识，用于服务间传递  |   xRequestId   |
 |  qpaper_id  |  int32  |  问卷ID  |   qpaperId   |
 |  check_role  |  bool  |  是否判断用户权限  |   checkRole   |
 
+### <span id="qpaperrsp">QPaperRsp</span> 
+> 包括单个问卷信息的响应  
 
-### <span id="qpaperrsp">[QPaperRsp]</span> 包括单个问卷信息的响应
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  return_message  |  string  |  返回错误信息  |   returnMessage   |
 |  qpaper_id  |  int32  |  问卷ID  |   qpaperId   |
 |  subject  |  string  |  问卷标题  |   subject   |
@@ -378,10 +418,11 @@
 |  description  |  string  |  注释和说明  |   description   |
 |  create_user_id  |  string  |  注释  |   createUserId   |
 
+### <span id="saveapaperreq">SaveAPaperReq</span> 
+> 什么字段都没有，请求  
 
-### <span id="saveapaperreq">[SaveAPaperReq]</span> 什么字段都没有，请求
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  client_ip  |  string  |  用户端IP  |   clientIp   |
 |  identity  |  string  |  用户标识  |   identity   |
 |  x_request_id  |  string  |  请求的唯一标识，用于服务间传递  |   xRequestId   |
@@ -390,17 +431,19 @@
 |  remark  |  string  |    |   remark   |
 |  answers  |  [DTOAnswer](#dtoanswer)  |  答案信息  |   answers   |
 
+### <span id="saveapaperrsp">SaveAPaperRsp</span> 
+>   
 
-### <span id="saveapaperrsp">[SaveAPaperRsp]</span> 
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  return_message  |  string  |  返回错误信息  |   returnMessage   |
 |  apaper_id  |  int32  |  保存后的问卷ID  |   apaperId   |
 
+### <span id="queryapaperreq">QueryAPaperReq</span> 
+> 查询问卷的请求  
 
-### <span id="queryapaperreq">[QueryAPaperReq]</span> 查询问卷的请求
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  client_ip  |  string  |  用户端IP  |   clientIp   |
 |  identity  |  string  |  用户标识  |   identity   |
 |  x_request_id  |  string  |  请求的唯一标识，用于服务间传递  |   xRequestId   |
@@ -410,46 +453,50 @@
 |  rp  |  int32  |  每页记录数  |   rp   |
 |  check_role  |  bool  |  检查角色  |   checkRole   |
 
+### <span id="apaperlistrsp">APaperListRsp</span> 
+> 查询问卷的列表  
 
-### <span id="apaperlistrsp">[APaperListRsp]</span> 查询问卷的列表
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  return_message  |  string  |  返回错误信息  |   returnMessage   |
 |  list  |  [DTOAPaper](#dtoapaper)  |  答卷列表  |   list   |
 |  total  |  int32  |  每页的记录数  |   total   |
 
+### <span id="getapaperreq">GetAPaperReq</span> 
+> 获取单个问卷的请求  
 
-### <span id="getapaperreq">[GetAPaperReq]</span> 获取单个问卷的请求
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  client_ip  |  string  |  用户端IP  |   clientIp   |
 |  identity  |  string  |  用户标识  |   identity   |
 |  x_request_id  |  string  |  请求的唯一标识，用于服务间传递  |   xRequestId   |
 |  paper_id  |  int32  |  答卷ID  |   paperId   |
 |  check_role  |  bool  |  是否校验权限  |   checkRole   |
 
+### <span id="apaperrsp">APaperRsp</span> 
+> 包括单个问卷信息的响应  
 
-### <span id="apaperrsp">[APaperRsp]</span> 包括单个问卷信息的响应
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  return_message  |  string  |  返回错误信息  |   returnMessage   |
 |  apaper  |  [DTOAPaperWithAnswers](#dtoapaperwithanswers)  |    |   apaper   |
 |  qpaper  |  [DTOQPaperWithQuestion](#dtoqpaperwithquestion)  |    |   qpaper   |
 
+### <span id="getqpaperstareq">GetQPaperStaReq</span> 
+>   
 
-### <span id="getqpaperstareq">[GetQPaperStaReq]</span> 
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  client_ip  |  string  |  用户端IP  |   clientIp   |
 |  identity  |  string  |  用户标识  |   identity   |
 |  x_request_id  |  string  |  请求的唯一标识，用于服务间传递  |   xRequestId   |
 |  qpaper_id  |  int32  |    |   qpaperId   |
 
+### <span id="qpaperstarsp">QPaperStaRsp</span> 
+>   
 
-### <span id="qpaperstarsp">[QPaperStaRsp]</span> 
 | 字段名     | 类型   |  注释  |  JSON Name  |
-| --------   | -----  | ----  | ----  | ----  |
+| --------   | -----  | ----  | ----  |
 |  return_message  |  string  |  返回错误信息  |   returnMessage   |
 |  qpaper  |  [DTOQPaperWithQuestion](#dtoqpaperwithquestion)  |    |   qpaper   |
 |  sta_detail  |  [APaperStaDetail](#apaperstadetail)  |    |   staDetail   |
-
