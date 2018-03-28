@@ -73,6 +73,71 @@ namespace Survey.Core
                 return new CheckLoginReq();
             }
 
+            if (serviceId == 20002 && messageId == 1)
+            {
+                return new SaveAPaperReq();
+            }
+
+            if (serviceId == 20002 && messageId == 2)
+            {
+                return new QueryAPaperReq();
+            }
+
+            if (serviceId == 20002 && messageId == 3)
+            {
+                return new GetAPaperReq();
+            }
+
+            if (serviceId == 20002 && messageId == 4)
+            {
+                return new GetAPaperStaDetailReq();
+            }
+
+            if (serviceId == 20001 && messageId == 1)
+            {
+                return new SaveQPaperReq();
+            }
+
+            if (serviceId == 20001 && messageId == 2)
+            {
+                return new QueryQPaperReq();
+            }
+
+            if (serviceId == 20001 && messageId == 3)
+            {
+                return new GetQPaperReq();
+            }
+
+            if (serviceId == 20001 && messageId == 4)
+            {
+                return new GetQPaperReq();
+            }
+
+            if (serviceId == 20001 && messageId == 5)
+            {
+                return new AddAPaperReq();
+            }
+
+            if (serviceId == 20003 && messageId == 1)
+            {
+                return new RegisterReq();
+            }
+
+            if (serviceId == 20003 && messageId == 2)
+            {
+                return new LoginReq();
+            }
+
+            if (serviceId == 20003 && messageId == 3)
+            {
+                return new EditUserReq();
+            }
+
+            if (serviceId == 20003 && messageId == 4)
+            {
+                return new GetUserReq();
+            }
+
             return null;
         }
 
@@ -135,6 +200,71 @@ namespace Survey.Core
             }
 
             if (serviceId == 10001 && messageId == 34)
+            {
+                return new GetUserRsp();
+            }
+
+            if (serviceId == 20002 && messageId == 1)
+            {
+                return new SaveAPaperRsp();
+            }
+
+            if (serviceId == 20002 && messageId == 2)
+            {
+                return new APaperListRsp();
+            }
+
+            if (serviceId == 20002 && messageId == 3)
+            {
+                return new APaperRsp();
+            }
+
+            if (serviceId == 20002 && messageId == 4)
+            {
+                return new APaperStaDetailRsp();
+            }
+
+            if (serviceId == 20001 && messageId == 1)
+            {
+                return new SaveQPaperRsp();
+            }
+
+            if (serviceId == 20001 && messageId == 2)
+            {
+                return new QPaperListRsp();
+            }
+
+            if (serviceId == 20001 && messageId == 3)
+            {
+                return new QPaperRsp();
+            }
+
+            if (serviceId == 20001 && messageId == 4)
+            {
+                return new QPaperFullRsp();
+            }
+
+            if (serviceId == 20001 && messageId == 5)
+            {
+                return new VoidRsp();
+            }
+
+            if (serviceId == 20003 && messageId == 1)
+            {
+                return new RegisterRsp();
+            }
+
+            if (serviceId == 20003 && messageId == 2)
+            {
+                return new LoginRsp();
+            }
+
+            if (serviceId == 20003 && messageId == 3)
+            {
+                return new EditUserRsp();
+            }
+
+            if (serviceId == 20003 && messageId == 4)
             {
                 return new GetUserRsp();
             }

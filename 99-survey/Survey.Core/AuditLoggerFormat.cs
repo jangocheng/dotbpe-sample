@@ -27,12 +27,18 @@ namespace Survey.Core
         {
             string log = string.Empty;
 
-            if(req == null || rsp ==null)
+            if (req == null || rsp == null)
             {
                 return log;
             }
             var reqParser = GetMessageParser(req.ServiceId, req.MessageId, 1);
             var resParser = GetMessageParser(rsp.ServiceId, rsp.MessageId, 2);
+
+            if(reqParser ==null || resParser == null)
+            {
+                Console.WriteLine("{0},{1} ,错误的服务ID和消息ID", req.ServiceId, req.MessageId);
+                return null;
+            }
 
             if (logType == AuditLogType.CACAduit)
             {
@@ -45,16 +51,24 @@ namespace Survey.Core
 
             return log;
         }
-        
+
         private string FormatCACLog(AmpMessage req, AmpMessage rsp, long elapsedMS, Google.Protobuf.MessageParser reqParser, Google.Protobuf.MessageParser resParser)
         {
             string mothedName = req.FriendlyServiceName ?? req.MethodIdentifier;
-          
-            IMessage reqMsg = reqParser.ParseFrom(req.Data);
-            IMessage resMsg = resParser.ParseFrom(rsp.Data);
 
-            var jsonReq = JsonFormatter.Format(reqMsg);
-            var jsonRsp = JsonFormatter.Format(resMsg);
+            IMessage reqMsg = null;
+            IMessage resMsg = null;
+            if (req.Data != null)
+            {
+                reqMsg = reqParser.ParseFrom(req.Data);
+            }
+            if (rsp.Data != null)
+            {
+                resMsg = resParser.ParseFrom(rsp.Data);
+            }
+
+            var jsonReq = reqMsg == null ? "" : JsonFormatter.Format(reqMsg);
+            var jsonRsp = resMsg == null ? "" : JsonFormatter.Format(resMsg);
 
             var clientIP = FindFieldValue(reqMsg, "client_ip");
             var requestId = FindFieldValue(reqMsg, "x_request_id");
@@ -80,12 +94,19 @@ namespace Survey.Core
                 remoteIP = DotBPE.Rpc.Utils.ParseUtils.ParseEndPointToIPString(context.RemoteAddress);
             }
             string mothedName = req.FriendlyServiceName ?? req.MethodIdentifier;
+            IMessage reqMsg = null;
+            IMessage resMsg = null;
+            if (req.Data != null)
+            {
+                reqMsg = reqParser.ParseFrom(req.Data);
+            }
+            if (rsp.Data != null)
+            {
+                resMsg = resParser.ParseFrom(rsp.Data);
+            }
 
-            IMessage reqMsg = reqParser.ParseFrom(req.Data);
-            IMessage resMsg = resParser.ParseFrom(rsp.Data);
-
-            var jsonReq = JsonFormatter.Format(reqMsg);
-            var jsonRsp = JsonFormatter.Format(resMsg);
+            var jsonReq = reqMsg == null ? "" : JsonFormatter.Format(reqMsg);
+            var jsonRsp = resMsg == null ? "" : JsonFormatter.Format(resMsg);
 
             var clientIP = FindFieldValue(reqMsg, "client_ip");
             var requestId = FindFieldValue(reqMsg, "x_request_id");
@@ -98,10 +119,10 @@ namespace Survey.Core
                 requestId = "UNKNOWN";
             }
             //remoteIP,clientIp,requestId,serviceName,request_data,response_data , elapsedMS ,status_code
-            return string.Format("{0},  {1},  {2},  {3},  req={4},  res={5},  {6},  {7}", remoteIP,clientIP, requestId, mothedName, jsonReq, jsonRsp, elapsedMS, rsp.Code);
+            return string.Format("{0},  {1},  {2},  {3},  req={4},  res={5},  {6},  {7}", remoteIP, clientIP, requestId, mothedName, jsonReq, jsonRsp, elapsedMS, rsp.Code);
         }
 
-       
+
         private Google.Protobuf.MessageParser GetMessageParser(ushort serviceId, ushort messageId, int type)
         {
             string cacheKey = string.Format("{0}_{1}_{2}", serviceId, messageId, type);
@@ -132,18 +153,22 @@ namespace Survey.Core
         }
 
 
-        private static string FindFieldValue(IMessage msg ,string fieldName)
+        private static string FindFieldValue(IMessage msg, string fieldName)
         {
+            if (msg == null)
+            {
+                return "";
+            }
             var field = msg.Descriptor.FindFieldByName(fieldName);
-            if(field != null)
+            if (field != null)
             {
                 var retObjV = field.Accessor.GetValue(msg);
                 if (retObjV != null)
                 {
                     return retObjV.ToString();
                 }
-            }            
-            return ""; 
+            }
+            return "";
         }
     }
 }

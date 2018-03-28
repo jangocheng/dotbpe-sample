@@ -11,7 +11,7 @@ using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Survey.Core;
-
+using DotBPE.Rpc.Netty;
 namespace Survey.AspNetGateway
 {
     public class Startup
@@ -52,7 +52,7 @@ namespace Survey.AspNetGateway
             //services.AddDotBPE();
 
             //添加转发服务配置
-            services.AddGatewayClient();
+            services.AddGatewayClient().AddNettyClient<AmpMessage>();
 
             //cookie 认证相关
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
