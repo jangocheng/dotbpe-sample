@@ -23,7 +23,7 @@ elif [ $machine = "Cygwin" ] ; then
 elif [ $machine = "MinGw" ] ; then
   PLUGIN=protoc-gen-dotbpe=dotbpe-amp-link.cmd
 else
-  PLUGIN=protoc-gen-dotbpe=dotbpe-amp-link
+  PLUGIN=protoc-gen-dotbpe=dotbpe-amp-link #/usr/local/bin/protoc-gen-dotbpe
 fi
 
 
